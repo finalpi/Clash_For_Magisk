@@ -37,6 +37,7 @@ start_clash() {
         sleep 1
         cp -f ${template_file} ${temporary_config_file}.swp && echo "\n" >> ${temporary_config_file}.swp
         sed -n -E '/^proxies:$/,$p' ${Clash_config_file} >> ${temporary_config_file}.swp
+        sed -i -E '/^rules:$/r '${rule_file}'' ${temporary_config_file}.swp
         sed -i '/^[  ]*$/d' ${temporary_config_file}.swp
     done
 
